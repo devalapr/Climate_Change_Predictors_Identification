@@ -1,2 +1,14 @@
 this file is a documentation of how the project to be accessed
-steps will be updated later
+ 
+ step1:
+ create a ssh key for your system and update it in your gitlab account
+ 
+ step 2:
+ fork the project from whocares
+ so that it will be displayed in your git lab account
+ 
+ step 3:
+ download git for r studio
+ 
+ step 4:
+ select new project and select version control option then paste the git clone url of your project.

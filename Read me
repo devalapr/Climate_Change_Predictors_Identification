@@ -11,4 +11,7 @@ this file is a documentation of how the project to be accessed
  download git for r studio
  
  step 4:
- select new project and select version control option then paste the git clone url of your project.
+ select new project and select version control option then paste the git clone url of your project
+ 
+ step 5:
+ before pushing something into gitlab please consider pulling the data first

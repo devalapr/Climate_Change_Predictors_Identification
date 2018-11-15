@@ -6,7 +6,7 @@ this file is a documentation of how the project to be accessed
  step 2:
  fork the project from whocares
  so that it will be displayed in your git lab account
- 
+ then add the mirroring url of the parent project to your account inorder to fetch the data
  step 3:
  download git for r studio
  
@@ -15,3 +15,4 @@ this file is a documentation of how the project to be accessed
  
  step 5:
  before pushing something into gitlab please consider pulling the data first
+

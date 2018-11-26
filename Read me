@@ -14,5 +14,8 @@ this file is a documentation of how the project to be accessed
  select new project and select version control option then paste the git clone url of your project
  
  step 5:
- before pushing something into gitlab please consider pulling the data first
+ before pushing something into gitlab please consider pulling the data first 
+ 
+ step6 :
+ if ssh dont work use http
 

@@ -2,7 +2,9 @@ library(reshape2)
 library(ggplot2)
 library(dplyr)
 library(readr)
-PopulationDataset_Raw <- read_csv("Data sets/PopulationDataset_Raw.csv")
+PopulationDataset_Raw <- read_delim("Data sets/PopulationDataset_Raw.csv", 
+                                    "\t", escape_double = FALSE, trim_ws = TRUE)
 View(PopulationDataset_Raw)
 Population_Data<- melt(PopulationDataset_Raw, id=c("Country"))
 write.csv(Population_Data,file="PopulationTest.csv")
+

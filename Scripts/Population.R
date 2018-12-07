@@ -7,3 +7,8 @@ PopulationDataset_Raw <- read_delim("Data sets/PopulationDataset_Raw.csv",
 View(PopulationDataset_Raw)
 Population_Data<- melt(PopulationDataset_Raw, id=c("Country"))
 write.csv(Population_Data,file="Data sets/PopulationTest.csv")
+
+Population_Data %>% filter(Country == "IND")
+Population_Data
+
+cor(Population_Data$TotalDeaths,Population_Data$TotalAffected,method="spearman")

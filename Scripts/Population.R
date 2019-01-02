@@ -19,7 +19,7 @@ TemperaturDataSet$MaxTemperature<-NULL
 #colnames(PopulationDataset_02_Comments_Removed)
 #head(PopulationDataset_02_Comments_Removed)
 Population_Data<- melt(PopulationDataset_02_Comments_Removed, id=c("Country Code"))
-
+Population_Data$Year <- as.numeric(as.character(Population_Data$Year))
 #Rename Columns as per this Project Standards
 colnames(Population_Data)[1]="Country"
 colnames(Population_Data)[2]="Year"
@@ -34,10 +34,13 @@ Country_List <- unique(Population_Data$Country)
 
 Population_final = Population_Data[FALSE,]
 Countries_Ommitted <- c("INX")
+o = 1
+Error_Summary <- vector(mode="character", length=length(Country_List))
 for (Country1 in Country_List) {
   cat("Current Country is ", Country1)
   Population_Country <- Population_Data %>% filter(Country == Country1)
   if(sum(is.na(Population_Country$Year))>ncol(Population_Country)/4){
+    o++
     c(Countries_Ommitted,Country1)
     break
   }
@@ -53,17 +56,19 @@ for (Country1 in Country_List) {
   #cat("Check for factor ",is.factor(temp_country$Year))
   #print(temp_country$Year)
   linearMod <- lm(Population ~ Year, data=temp_country)
+  #Error_Summary[match((Country1),Country_List)]<-summary(linearMod)
   print(summary(linearMod))
+  cat("Values in object\n")
+  attributes(linearMod)
   cat("Liner Model Coeffs",linearMod$coefficients,"\n")
   for(i in 1:nrow(Population_Country))
   {
      if(is.na(Population_Country$Population[i]))
       {
-        cat(i,"\n")
+        #cat(i,"\n")
         Population_Country$Population[i] = as.numeric(linearMod$coefficients[1]) + as.numeric(linearMod$coefficients[2])*(Population_Data$Year[i])
         #cat(as.numeric(as.numeric(Population_Country$Population[i]),"=",linearMod$coefficients[1]),as.numeric(linearMod$coefficients[2]),as.numeric(Population_Data$Year[i]))
         #cat("Year",Population_Data$Year[i])
-        cat("\n")
         }
     }
     Population_final <- rbind(Population_final,Population_Country)
@@ -75,5 +80,6 @@ write.csv(Population_final,file="Data sets/PopulationDataset_03_Preprocessed.csv
 #write.csv(Population_Data,file="Data sets/PopulationTest.csv")
 #Population_Data %>% filter(Country == "IND")
 #Population_Data
-cat("Ommitted countries are : ",Countries_Ommitted)
+#write.csv(Error_Summary,file="Data sets/PopulationDataset_ErrorSummary.csv",row.names=FALSE)
+cat("Ommitted countries are : ",o,Countries_Ommitted)
 #cor(Population_Data$TotalDeaths,Population_Data$TotalAffected,method="spearman")

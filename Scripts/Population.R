@@ -9,7 +9,7 @@ PopulationDataset_02_Comments_Removed <- read_csv("Data sets/PopulationDataset_0
 TemperaturDataSet <- read_csv("Data sets/TemperatureDatasetFinal.csv")
 head(TemperaturDataSet)
 
-#Deleting unnecessary columns
+#Deleting irrelevant columns
 PopulationDataset_02_Comments_Removed$`Country Name`<-NULL
 PopulationDataset_02_Comments_Removed$`Indicator Name`<-NULL
 PopulationDataset_02_Comments_Removed$`Indicator Code`<-NULL

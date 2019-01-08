@@ -3,21 +3,14 @@ library(ggplot2)
 library(dplyr)
 library(readr)
 
-PopulationDataset_02_Comments_Removed <- read_csv("Data sets/PopulationDataset_02_Comments_Removed.csv")
-#View(PopulationDataset_Raw_Comments_Removed)
-#colnames(PopulationDataset_02_Comments_Removed)
-TemperaturDataSet <- read_csv("Data sets/TemperatureDatasetFinal.csv")
-head(TemperaturDataSet)
+PopulationDataset_02_Comments_Removed <- read_csv("Data sets/PopulationDataset_Raw.csv")
 
 #Deleting irrelevant columns
 PopulationDataset_02_Comments_Removed$`Country Name`<-NULL
 PopulationDataset_02_Comments_Removed$`Indicator Name`<-NULL
 PopulationDataset_02_Comments_Removed$`Indicator Code`<-NULL
 PopulationDataset_02_Comments_Removed<-PopulationDataset_02_Comments_Removed[!(PopulationDataset_02_Comments_Removed$`Country Code`=="INX"),]
-TemperaturDataSet$MinTemperature<-NULL
-TemperaturDataSet$MaxTemperature<-NULL
-#colnames(PopulationDataset_02_Comments_Removed)
-#head(PopulationDataset_02_Comments_Removed)
+#Melting the dataset here to the required format
 Population_Data<- melt(PopulationDataset_02_Comments_Removed, id=c("Country Code"))
 Population_Data$Year <- as.numeric(as.character(Population_Data$Year))
 #Rename Columns as per this Project Standards
@@ -26,8 +19,6 @@ colnames(Population_Data)[2]="Year"
 colnames(Population_Data)[3]="Population"
 Population_Data <- Population_Data[order(Population_Data$Country),]
 #Population_Data[is.na(Population_Data)] <- 0
-# Merged <- merge(Population_Data,TemperaturDataSet,by=c("Country","Year"))
-# head(Merged)
 
 Country_List <- unique(Population_Data$Country)
 #Country_List <- c("ERI")
@@ -74,12 +65,4 @@ for (Country1 in Country_List) {
     Population_final <- rbind(Population_final,Population_Country)
 }
 #head(Population_final)
-write.csv(Population_final,file="Data sets/PopulationDataset_03_Preprocessed.csv",row.names=FALSE)
-#head(Population_Data)
-#write.csv(Population_Data,file="Data sets/PopulationDataset.csv",row.names=FALSE)
-#write.csv(Population_Data,file="Data sets/PopulationTest.csv")
-#Population_Data %>% filter(Country == "IND")
-#Population_Data
-#write.csv(Error_Summary,file="Data sets/PopulationDataset_ErrorSummary.csv",row.names=FALSE)
-cat("Ommitted countries are : ",o,Countries_Ommitted)
-#cor(Population_Data$TotalDeaths,Population_Data$TotalAffected,method="spearman")
+write.csv(Population_final,file="Data sets/PopulationDataset_Preprocessed.csv",row.names=FALSE)

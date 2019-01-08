@@ -44,6 +44,7 @@ summary(data_IND)
 head(data_IND)
 # Select a subset of numeric variables for regression modelling
 data_IND.sel <- subset(data_IND, select = c(Year,Population,GDP,Emissions,AverageTemperature))
+data.sel <- subset(data, select = c(Population,GDP,Emissions,anamoly))
 
 
 ##### Analyse variables for
@@ -55,6 +56,7 @@ data_IND.sel <- subset(data_IND, select = c(Year,Population,GDP,Emissions,Averag
 
 # Here we'll only make a brief visual inspection of vars
 pairs.panels(data_IND.sel, col="red")
+pairs.panels(data.sel, col="red")
 
 
 ##### Develop a linear model
@@ -65,9 +67,9 @@ pairs.panels(data_IND.sel, col="red")
 # We will use (train.size)% for training and (100-train.size)% for validation
 set.seed(2017)
 train.size <- 0.8 
-train.index <- sample.int(length(data_IND$AverageTemperature), round(length(data_IND.sel$AverageTemperature) * train.size))
-train.sample <- data_IND.sel[train.index,]
-valid.sample <- data_IND.sel[-train.index,]
+train.index <- sample.int(length(data$anamoly), round(length(data.sel$anamoly) * train.size))
+train.sample <- data.sel[train.index,]
+valid.sample <- data.sel[-train.index,]
 
 
 ### Multiple regression model utilises a simple formula:
@@ -78,10 +80,7 @@ valid.sample <- data_IND.sel[-train.index,]
 # We will use a stepwise selection of variables by backwards elimination
 # We will consider all candidate variables and eliminate one at the time
 
-fit <- lm(AverageTemperature ~ Year+Population+GDP+Emissions, data=train.sample)
-summary(fit) # R2=73%
-
-fit <- lm(AverageTemperature ~ Population+GDP+Emissions, data=train.sample)
+fit <- lm(anamoly ~ Population+GDP+Emissions, data=train.sample)
 summary(fit) # R2=73%
 
 plot(fit)
@@ -89,7 +88,7 @@ plot(fit)
 # Observe that R-Sq almost did not change and all Ps are good
 
 # Note however that we found some extreme values, which could be removed, here they are
-train.sample[which(rownames(train.sample) %in% c("50", "12", "24")),]
+#train.sample[which(rownames(train.sample) %in% c("50", "12", "24")),]
 
 ##### Now evaluate the final linear model
 #     Find all predicted values for both a training set and a validation set

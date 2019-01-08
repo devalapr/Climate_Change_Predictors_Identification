@@ -5,13 +5,14 @@ library(dplyr)
 library(sqldf)
 library(tibble)
 #uncomment this code for generating the data set csv from the original data set
-#print(gdpAbsolute)
-#gdp_data<- melt(gdpAbsolute, id=c("Country Name","Country Code","Indicator Name","Indicator Code"))
+print(gdpAbsolute)
+gdp_data<- melt(gdpAbsolute, id=c("Country Name","Country Code","Indicator Name","Indicator Code"))
 #print(gdp_data)
 #write.csv(gdp_data,file="GDPDataSet.csv")
 
 #formatting the data set to rename the columns from the generated data set for column names variable and value to year and gdp
-GDPDataSet <- read_csv("Data sets/GDPDataSet.csv")
+#GDPDataSet <- read_csv("Data sets/GDPDataSet.csv")
+GDPDataSet <- gdp_data
 GDPDataSet<-GDPDataSet[-c(1)]
 colnames(GDPDataSet)[5]<-"Year"
 colnames(GDPDataSet)[6]<-"GDP"
@@ -35,6 +36,6 @@ GDPDataSet=GDPDataSet %>% filter(GDPDataSet[,4]!=cab)
 }
 View(GDPDataSet)
 
-write.csv(GDPDataSet,file="GDPDataSet.csv")
+write.csv(GDPDataSet,file="GDPDataSet.csv",row.names = FALSE)
 
 

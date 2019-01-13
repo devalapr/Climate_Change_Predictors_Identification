@@ -11,4 +11,4 @@ colnames(carbon_data)[2] <- "Country"
 colnames(carbon_data)[3] <- "Emissions"
 
 #writing the formatted data into csv file to make it available for further processing of the data
-write.csv(carbon_data, file = "Co2EmissionsDataSet.csv", row.names =FALSE )
+write.csv(carbon_data, file = "PreProcessed/Co2EmissionsDataSet.csv", row.names =FALSE )

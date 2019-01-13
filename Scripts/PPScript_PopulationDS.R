@@ -4,7 +4,7 @@ library(dplyr)
 library(readr)
 
 # Reading the dataset into a frame
-PopulationDataset_02_Comments_Removed <- read_csv("Data sets/PopulationDataset_Raw.csv")
+PopulationDataset_02_Comments_Removed <- read_csv("PopulationDataset_Raw.csv")
 
 #Deleting irrelevant columns
 PopulationDataset_02_Comments_Removed$`Country Name` <- NULL

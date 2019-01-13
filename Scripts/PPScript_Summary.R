@@ -1,5 +1,7 @@
 library(readr)
-#Script to find the preprocessed values for Gdp data set.
+# Script to find the summary values for Gdp data set.
+# This is used to build the table in the report
+
 gdpDataset=read.csv("Data sets/GDPDataSet.csv")
 GDPDataSet<-gdpDataset[-c(1)]
 colnames(GDPDataSet)[5]<-"Year"

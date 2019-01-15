@@ -2,14 +2,19 @@ IDENTIFICATION OF PREDICTORS FOR CLIMATE CHANGE EFFECTS
 
 Final Submission for the seminar: Data science with R
 
-Link to the Project Notebook - https://github.com/NazifALI/Yelp-Data-Analysis/blob/master/YelpDatasetAnalysis.ipynb (Report.HTML)
+The final project notebook is named "WHOCaresReport.nb.html" and is available in this folder.
+
+The datasets are located in the folder "Data sets".
+
+Code written to preprocess the datasets and analyse the data is stored in "Scripts" folder.
+
 
 Link to the screencast - https://www.youtube.com/watch?v=qQgJpYrw-WY
 
 Link to the website - https://who-cares.gitlab.io/rblog/
 
 
-Dependencies - To run these notebooks, make sure you have installed the following R libraries: 
+Dependencies - To run this notebook, make sure you have installed the following R packages: 
 magrittr, dplyr, ggplot2, corrplot, sqldf, tidyr, ggthemes, cowplot,
 Hmisc, psych, reshape2, readr, broom, ridge, caret, tseries, forecast, bootstrap
 

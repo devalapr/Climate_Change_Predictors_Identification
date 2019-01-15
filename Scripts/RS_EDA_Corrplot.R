@@ -22,6 +22,6 @@ for (rowIndex in CountryListCount) {
   colnames(INDDS)[2]<-"CO2"
   colnames(INDDS)[4]<-"Popln"
   res <- round(cor(INDDS),2)
-  corrplot(res, title =cab1 , method = mthd,  tl.col = "black")
+  corrplot(res, title =cab1 , method = mthd,  tl.col = "black",mar=c(0,0,1,0))
 }
 #tl.srt = 45

@@ -18,3 +18,6 @@ Notes:
 2. All the pre processing scripts were run from the "Data sets" folder.
 3. The script "MergeAndAnamoly.R" is run under the folder "Data sets/PreProcessed"
 
+
+Please download the notebook to view it better.
+
